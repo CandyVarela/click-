@@ -122,6 +122,27 @@ footer .wrap{padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));dis
 .toast{max-width:calc(100% - 32px);text-align:center;position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:rgba(29,29,31,.92);color:#fff;padding:10px 18px;border-radius:999px;font-size:.88rem;z-index:50}
 @media (prefers-reduced-motion:no-preference){.drawer{animation:in .28s cubic-bezier(.2,.8,.2,1)}@keyframes in{from{transform:translateX(40px);opacity:0}}}
 @media (prefers-reduced-motion:reduce){.card,.btn,.add{transition:none}}
+
+/* grados */
+.grados{padding-block:8px 24px}
+.grados-head{text-align:center;max-width:46ch;margin:0 auto 28px}
+.grados-head h2{font-weight:700;font-size:clamp(1.8rem,4.4vw,2.6rem);letter-spacing:-.03em;line-height:1.08;margin:6px 0 10px;text-wrap:balance}
+.grados-head p{margin:0;color:var(--muted)}
+.grados-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:820px){.grados-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.grados-grid{grid-template-columns:1fr}}
+.grado{background:var(--tile);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.grado .letra{font-weight:700;font-size:2.6rem;line-height:1;letter-spacing:-.04em}
+.grado h3{margin:0;font-size:1rem;font-weight:600;letter-spacing:-.01em}
+.grado p{margin:0;color:var(--muted);font-size:.88rem;flex:1}
+.estado{display:flex;gap:4px;margin-top:6px}
+.estado i{flex:1;height:4px;border-radius:999px;background:var(--line)}
+.estado i.on{background:var(--ink)}
+.estado-lbl{font-size:.72rem;color:var(--faint)}
+.garantia{margin:20px auto 0;max-width:720px;display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:18px;padding:16px 20px}
+.garantia svg{flex:0 0 auto;color:#34c759}
+.garantia p{margin:0;font-size:.95rem;min-width:0}
+.garantia b{font-weight:600}
 </style>
 
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
@@ -186,6 +207,25 @@ footer .wrap{padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));dis
           <div class="bar"><i style="width:100%"></i></div>
           <span>Capacidad máxima · revisada en el local</span>
         </div>
+      </div>
+    </section>
+
+
+    <section class="grados" id="grados" aria-labelledby="gr-t">
+      <div class="grados-head">
+        <div class="eyebrow">iPhone usados</div>
+        <h2 id="gr-t">¿Qué significa cada grado?</h2>
+        <p>Los iPhone usados vienen clasificados por grado según su estado estético. El grado lo asigna el proveedor.</p>
+      </div>
+      <div class="grados-grid">
+        <article class="grado"><span class="letra">A</span><h3>Prácticamente nuevo</h3><p>Sin marcas visibles. Se ve como recién sacado de la caja.</p><div class="estado" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="estado-lbl">Estado estético</span></article>
+        <article class="grado"><span class="letra">AB</span><h3>Mínimos detalles</h3><p>Detalles casi imperceptibles. Hay que buscarlos para verlos.</p><div class="estado" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span class="estado-lbl">Estado estético</span></article>
+        <article class="grado"><span class="letra">B</span><h3>Detalles leves</h3><p>Marcas mínimas en bordes o pantalla.</p><div class="estado" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="estado-lbl">Estado estético</span></article>
+        <article class="grado"><span class="letra">C</span><h3>Detalles visibles</h3><p>Bastantes detalles estéticos a la vista.</p><div class="estado" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div><span class="estado-lbl">Estado estético</span></article>
+      </div>
+      <div class="garantia">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>
+        <p><b>Todos funcionan a la perfección.</b> El grado es solo estético: no cambia el rendimiento ni las funciones del equipo.</p>
       </div>
     </section>
 
