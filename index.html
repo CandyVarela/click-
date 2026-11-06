@@ -160,6 +160,8 @@ footer .wrap{padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));dis
 .t-feat span{background:rgba(255,255,255,.1);border-radius:50px;padding:6px 12px;font-size:.8rem;font-weight:600}
 .t-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 .t-card{background:var(--tile);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:10px;position:relative}
+.t-foto{display:block;width:calc(100% + 40px);margin:-20px -20px 4px;aspect-ratio:3/4;object-fit:cover;border-radius:22px 22px 0 0;background:#e5e5ea}
+.t-foto+.t-top{position:absolute;top:30px;left:20px;right:20px}
 .t-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .t-ic{width:44px;height:44px;color:var(--ink)}
 .t-badges{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
@@ -370,19 +372,19 @@ function open(v){$('#drawer').hidden=!v; $('#scrim').hidden=!v; if(v) $('#closeC
 
 const TESTERS=[
  {id:'ip13-128',n:'iPhone 13',gb:'128GB',g:'B',p:515000},
- {id:'ip14-128',n:'iPhone 14',gb:'128GB',g:'B',p:565000},
- {id:'ip14p-128',n:'iPhone 14 Pro',gb:'128GB',g:'',p:780000},
- {id:'ip14p-256',n:'iPhone 14 Pro',gb:'256GB',g:'B',p:800000},
- {id:'ip15p-128',n:'iPhone 15 Pro',gb:'128GB',g:'',p:955000},
- {id:'ip16-128',n:'iPhone 16',gb:'128GB',g:'',p:1050000},
- {id:'ip16p-128',n:'iPhone 16 Pro',gb:'128GB',g:'',p:1200000}
+ {id:'ip14-128',img:'ip14',n:'iPhone 14',gb:'128GB',g:'B',p:565000},
+ {id:'ip14p-128',img:'ip14p',n:'iPhone 14 Pro',gb:'128GB',g:'',p:780000},
+ {id:'ip14p-256',img:'ip14p',n:'iPhone 14 Pro',gb:'256GB',g:'B',p:800000},
+ {id:'ip15p-128',img:'ip15p',n:'iPhone 15 Pro',gb:'128GB',g:'',p:955000},
+ {id:'ip16-128',img:'ip16',n:'iPhone 16',gb:'128GB',g:'',p:1050000},
+ {id:'ip16p-128',img:'ip16p',n:'iPhone 16 Pro',gb:'128GB',g:'',p:1200000}
 ];
 TESTERS.forEach(t=>P.push({id:t.id,c:'iphones',n:t.n+' '+t.gb+' (tester)',tag:t.g?'Grado '+t.g:'Tester',p:t.p,i:'case',d:''}));
 const IPH='<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="16" y="4" width="32" height="56" rx="8"/><rect x="21" y="9" width="12" height="14" rx="4"/><circle cx="25" cy="14" r="2"/><circle cx="29" cy="19" r="2"/></svg>';
 function drawTesters(){
   const g=document.getElementById('tGrid'); if(!g) return;
   g.innerHTML=TESTERS.map(t=>{const wa=`https://wa.me/${WA}?text=${encodeURIComponent('Hola Click! Me interesa el '+t.n+' '+t.gb+(t.g?' grado '+t.g:'')+' tester de '+fmt(t.p)+'. ¿Sigue disponible?')}`;
-    return `<article class="t-card"><div class="t-top"><span class="t-ic">${IPH}</span><span class="t-badges"><span class="t-disp">● Disponible</span>${t.g?`<a class="t-grado" href="#grados">Grado ${t.g}</a>`:''}</span></div><h3>${t.n}</h3><span class="t-gb">${t.gb}</span><span class="t-price">${fmt(t.p)}</span><div class="t-btns"><button class="add" data-id="${t.id}">Reservar</button><a class="t-wa" href="${wa}" target="_blank" rel="noopener">Consultar</a></div></article>`}).join('');
+    return `<article class="t-card">${t.img?`<img class="t-foto" src="img/testers/${t.img}.jpg" alt="${t.n} tester" loading="lazy" width="600" height="800">`:''}<div class="t-top">${t.img?'<span></span>':`<span class="t-ic">${IPH}</span>`}<span class="t-badges"><span class="t-disp">● Disponible</span>${t.g?`<a class="t-grado" href="#grados">Grado ${t.g}</a>`:''}</span></div><h3>${t.n}</h3><span class="t-gb">${t.gb}</span><span class="t-price">${fmt(t.p)}</span><div class="t-btns"><button class="add" data-id="${t.id}">Reservar</button><a class="t-wa" href="${wa}" target="_blank" rel="noopener">Consultar</a></div></article>`}).join('');
   g.addEventListener('click',e=>{const b=e.target.closest('.add'); if(b){add(b.dataset.id,b); setTimeout(()=>{b.textContent='Reservar'},1250);}});
 }
 $('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip'); if(!b) return; filtro=b.dataset.c; chips(); render()});
